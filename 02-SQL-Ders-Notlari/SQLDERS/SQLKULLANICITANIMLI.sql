@@ -1,0 +1,11 @@
+﻿USE UYGULAMA
+GO
+DECLARE @Ad NVARCHAR(250)--tanımlama
+SET @Ad='Ayşegül'--ATAMA
+PRINT @Ad
+SET @AD=(SELECT TOP (1) Ad FROM PERSONEL ORDER BY Soyad DESC)--SORGU
+PRINT @Ad
+--DECLARE @Soyad NVARCHAR(250)='Çeliker'--tanım+atama
+--PRINT @Soyad
+DECLARE @Soyad NVARCHAR(250)=(SELECT TOP(1)Soyad FROM PERSONEL)--sorgu+tanıma
+PRINT @Soyad

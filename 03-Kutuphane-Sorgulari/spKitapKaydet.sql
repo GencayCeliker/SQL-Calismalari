@@ -1,0 +1,16 @@
+USE KUTUPHANE
+GO
+DROP PROCEDURE IF EXISTS dbo.spKitapKaydet
+GO
+SET NOCOUNT ON
+GO
+CREATE PROCEDURE spKitapKaydet
+@ISBN NCHAR(13),
+@KitapAdi NVARCHAR(250),
+@Sayfa INT,
+@Adet INT,
+@YazarId INT
+AS BEGIN
+INSERT INTO TBL_Kitaplar VALUES
+(@ISBN,@KitapAdi,@Sayfa,@Adet,@YazarId)
+END

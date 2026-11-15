@@ -1,0 +1,14 @@
+DROP PROCEDURE IF EXISTS OgrenciListele
+GO
+CREATE PROCEDURE OgrenciListele
+AS BEGIN
+SELECT OGRENCI.OgrKod
+      ,OGRENCI.AdSoyad
+      ,OGRENCI.OkulNo
+      ,OGRENCI.Tel
+      ,OGRENCI.Adres
+      ,OGRENCI.OgrKod
+      ,BOLUMLER.BolumAdi
+ FROM dbo.OGRENCI 
+  INNER JOIN dbo.BOLUMLER ON dbo.OGRENCI.BolumKod = dbo.BOLUMLER.BolumKod
+END

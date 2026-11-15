@@ -1,0 +1,46 @@
+﻿CREATE DATABASE OKULYONETIMSISTEMI
+GO 
+USE OKULYONETIMSISTEMI
+CREATE TABLE BOLUMLER
+(
+BolumKod INT IDENTITY PRIMARY KEY,
+BolumAdi NVARCHAR(100) NOT NULL
+)
+GO
+CREATE TABLE OGRENCI
+(
+OgrKod INT IDENTITY PRIMARY KEY,
+AdSoyad NVARCHAR (100) NOT NULL,
+OkulNo NCHAR(9) UNIQUE CHECK(OkulNo LIKE '[2][4-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]') NOT NULL,
+Tel NCHAR(11) NOT NULL,
+Adres NVARCHAR(250) NOT NULL,
+BolumKod INT FOREIGN KEY REFERENCES BOLUMLER(BolumKod)
+)
+CREATE TABLE DERSLER
+(
+DersKod INT IDENTITY PRIMARY KEY,
+DersAdi NVARCHAR(100) NOT NULL,
+Kredi NCHAR(30) NOT NULL,
+Donem NCHAR(4) NOT NULL,
+BolumKod INT FOREIGN KEY REFERENCES Bolumler(BolumKod)
+)
+GO
+CREATE TABLE DERSKAYIT
+(
+DKKod INT IDENTITY PRIMARY KEY ,
+OgrKod INT FOREIGN KEY REFERENCES OGRENCI(OgrKod),
+DersKod INT FOREIGN KEY REFERENCES DERSLER(DersKod)
+)
+INSERT INTO BOLUMLER( BolumAdi)
+VALUES('Bilgisayar Programcılığı'),('Mahkeme Büro Hizmetleri'),('Tapu'),('Eczacılık')
+
+INSERT INTO OGRENCI( AdSoyad, OkulNo, Tel, Adres, BolumKod)
+VALUES('Gecay Çeliker','100000001','05550000006','İstanbul',1),
+('Kerem Çetin','100000002','05550000042','Tokat',2),
+('Yusuf Alp','100000003','05550000043','Çorum',3),('Ahmet Çeliker','100000004','05550000006','Ankara',4)
+
+INSERT INTO Dersler( [DersAdi], [Kredi], [Donem], [BolumKod] )
+VALUES ('Veri Tabnı1','5','1',1),('Ana Yasa Maddeleri','6','2',2),('Arazi Ölçümü','4','3',3),('İlaç Üretim','4','3',4)
+
+INSERT INTO DERSKAYIT([OgrKod], [DersKod])
+VALUES(1,1),(2,2),(3,3),(1,4)

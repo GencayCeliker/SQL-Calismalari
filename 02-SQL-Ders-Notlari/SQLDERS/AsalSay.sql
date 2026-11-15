@@ -1,0 +1,16 @@
+﻿USE UYGULAMA
+GO
+DROP FUNCTION IF EXISTS dbo.AsalSay
+GO
+CREATE FUNCTION dbo.AsalSay(@N INT)
+RETURNS NVARCHAR(250)
+AS BEGIN
+    IF @N < 2 RETURN 'ASAL DEĞİL'
+    DECLARE @i INT = 2
+    WHILE @i <= SQRT(@N)
+    BEGIN
+        IF @N % @i = 0 RETURN 'ASAL DEĞİL'
+        SET @i = @i + 1
+    END
+    RETURN 'ASAL'
+END

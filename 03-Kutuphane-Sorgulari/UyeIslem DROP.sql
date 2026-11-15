@@ -1,0 +1,26 @@
+﻿USE [KUTUPHANE]
+GO
+
+DROP PROCEDURE IF EXISTS [dbo].[UyeIslem]
+GO
+CREATE PROCEDURE [dbo].[UyeIslem]
+@UyeId INT --C# dan gelen uyeid bilgisini buraya aktardık
+
+AS BEGIN
+
+SELECT 
+TBL_UYELER.UyeID,
+TBL_UYELER.UyeAd,
+TBL_UYELER.UyeSoyad, 
+TBL_UYELER.UyeTCKimlik, 
+TBL_Kitaplar.KitapId,
+TBL_Kitaplar.KitapAdi, 
+TBL_YAZARLAR.YazarAdSoyad, 
+TBL_UYEKITAP.OVTarihi,
+DATEDIFF(DAY,TBL_UYEKITAP.OVTarihi,GETDATE())AS Sure
+FROM TBL_Kitaplar 
+INNER JOIN TBL_UYEKITAP ON TBL_Kitaplar.KitapId = TBL_UYEKITAP.KitapId 
+INNER JOIN TBL_UYELER ON TBL_UYEKITAP.UyeId = TBL_UYELER.UyeId 
+INNER JOIN TBL_YAZARLAR ON TBL_Kitaplar.YazarId = TBL_YAZARLAR.YazarId
+WHERE TBL_UYELER.UyeId = @UyeId
+END

@@ -1,0 +1,4 @@
+﻿SET NOCOUNT ON
+INSERT INTO TBL_UYELER
+VALUES('Kerem','Çetin','10000000034','Tokat','5316152360')
+--INSERT,DELETE ya da UPDATE komutlarında kullan

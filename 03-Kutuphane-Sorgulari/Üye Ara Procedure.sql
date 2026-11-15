@@ -1,0 +1,12 @@
+USE KUTUPHANE
+GO
+CREATE PROCEDURE spUyeAra
+@Ara NVARCHAR(500)
+AS BEGIN
+SELECT * FROM TBL_UYELER
+WHERE	UyeTCKimlik LIKE @Ara +'%' OR
+		UyeAd LIKE @Ara +'%' OR
+		UyeSoyad LIKE @Ara +'%' OR
+		UyeAdres LIKE @Ara +'%' OR
+		UyeTel LIKE @Ara +'%'
+END

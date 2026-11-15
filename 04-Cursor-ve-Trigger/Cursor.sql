@@ -1,0 +1,26 @@
+CREATE PROCEDURE spMaasDuzenle
+AS BEGIN
+	DECLARE @PID INT,
+	@UnvanID INT ,
+	@CSayisi INT, 
+	@Kira BIT,
+	@Tazminat INT,
+	@Maas INT
+
+	DECLARE cMaasDuzenle CURSOR  FOR SELECT PID FROM MAASLAR
+	OPEN cMaasDuzenle
+	FETCH NEXT FROM cMaasDuzenle INTO @PID
+	WHILE @@FETCH_STATUS=0
+		BEGIN 
+			SET @UnvanID=(SELECT Unvan FROM PERSONEL WHERE PID=@PID)
+			SET @Tazminat=(SELECT Tazminat FROM UNVANLAR WHERE UnvanID=@UnvanID)
+		    SET @CSayisi=(SELECT CSayisi FROM PERSONEL WHERE PID=@PID)
+			SET @Kira= 0
+			IF(SELECT Kira FROM PERSONEL WHERE PID=@PID)=1 SET @Kira=20000
+			SET @Maas=75000+@CSayisi*3000+@Kira+@Tazminat
+			UPDATE MAASLAR SET Maas=@Maas WHERE PID=@PID 
+			FETCH NEXT FROM cMaasDuzenle INTO @PID
+		END
+		CLOSE cMaasDuzenle
+		DEALLOCATE cMaasDuzenle
+END

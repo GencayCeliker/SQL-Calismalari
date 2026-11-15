@@ -1,0 +1,22 @@
+USE [KUTUPHANE]
+GO
+DROP PROCEDURE IF EXISTS dbo.KitapGeriAl2
+GO
+CREATE PROCEDURE KitapGeriAl2
+@UyeId INT,
+@KitapId INT,
+@Ceza INT
+
+AS BEGIN
+SET NOCOUNT ON
+UPDATE  TBL_UYEKITAP SET GATarihi = GETDATE()
+WHERE UyeId =@UyeId AND 
+	  KitapId = @KitapId
+
+UPDATE TBL_Kitaplar SET Adet = Adet + 1
+WHERE KitapId = @KitapId
+
+INSERT INTO TBL_Kasa VALUES(@UyeId,1,GETDATE(),@Ceza)
+
+END
+GO

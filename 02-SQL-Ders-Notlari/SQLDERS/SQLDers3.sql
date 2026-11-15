@@ -1,0 +1,1 @@
+PRINT dbo.Toplam(100)
