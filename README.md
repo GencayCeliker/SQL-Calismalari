@@ -42,3 +42,7 @@ Bilgisayar Programcılığı eğitimim boyunca **Microsoft SQL Server** ve **T-S
 `07-Veritabani-Nesneleri` altındaki script'ler veritabanını kendisi oluşturur (`CREATE DATABASE`). Diğer klasörlerdeki dosyalar ders sırasında yazılmış sorgulardır; çoğu ilgili veritabanının önceden oluşturulmuş olmasını bekler (dosyanın başındaki `USE ...` satırına bakın).
 
 > Örnek verilerdeki TC Kimlik, telefon ve okul numaraları gerçek değildir.
+
+## 📄 Lisans
+
+Bu proje [MIT](LICENSE) lisansı altında sunulmuştur.
